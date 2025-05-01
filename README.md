@@ -60,6 +60,8 @@ npm install
 
 ## 실행 방법
 
+### 직접 실행
+
 ```bash
 npm start
 ```
@@ -69,6 +71,80 @@ npm start
 ```bash
 node src/index.js /path/to/config.json
 ```
+
+### Docker를 사용한 실행
+
+이 프로젝트는 Docker를 사용하여 실행할 수도 있습니다. Docker를 사용하면 의존성 설치나 환경 설정 없이 쉽게 실행할 수 있습니다.
+
+#### Docker Hub에서 이미지 사용
+
+이 프로젝트의 Docker 이미지는 Docker Hub에서 제공됩니다:
+
+[https://hub.docker.com/r/tinywind0/webfile-scrape-to-asus-downloader](https://hub.docker.com/r/tinywind0/webfile-scrape-to-asus-downloader)
+
+Docker Hub에서 이미지를 사용하려면 다음과 같이 실행합니다:
+
+1. 프로젝트 디렉토리에 `config.json` 파일을 생성하고 설정합니다.
+2. 다음 명령어로 Docker 이미지를 다운로드하고 실행합니다:
+
+```bash
+docker run -d \
+  --name webfile-scrape-to-asus-downloader \
+  -v $(pwd)/config.json:/config.json \
+  -v $(pwd)/scrap.db:/usr/src/app/scrap.db \
+  --restart unless-stopped \
+  tinywind0/webfile-scrape-to-asus-downloader
+```
+
+Windows PowerShell에서는 다음과 같이 실행합니다:
+
+```powershell
+docker run -d `
+  --name webfile-scrape-to-asus-downloader `
+  -v ${PWD}/config.json:/config.json `
+  -v ${PWD}/scrap.db:/usr/src/app/scrap.db `
+  --restart unless-stopped `
+  tinywind0/webfile-scrape-to-asus-downloader
+```
+
+#### 직접 빌드하여 실행
+
+소스 코드에서 직접 Docker 이미지를 빌드하여 실행할 수도 있습니다:
+
+##### 사전 요구 사항
+
+- Docker
+- Docker Compose
+
+##### Docker 실행 방법
+
+1. 프로젝트 디렉토리에 `config.json` 파일을 생성하고 설정합니다.
+2. 다음 명령어로 Docker 컨테이너를 빌드하고 실행합니다:
+
+```bash
+docker-compose up -d
+```
+
+3. 로그를 확인하려면 다음 명령어를 사용합니다:
+
+```bash
+docker-compose logs -f
+```
+
+4. 컨테이너를 중지하려면 다음 명령어를 사용합니다:
+
+```bash
+docker-compose down
+```
+
+#### Docker 볼륨
+
+Docker 설정에서는 다음 볼륨을 사용합니다:
+
+- `./config.json:/config.json`: 설정 파일
+- `./scrap.db:/usr/src/app/scrap.db`: 처리된 URL 데이터베이스 파일
+
+필요에 따라 `docker-compose.yml` 파일이나 `docker run` 명령어의 볼륨 설정을 변경할 수 있습니다.
 
 ## 작동 방식
 

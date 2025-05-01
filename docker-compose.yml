@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  webfile-scrape-to-asus-downloader:
+    build: .
+    volumes:
+      - ./config.json:/config.json
+      - ./scrap.db:/usr/src/app/scrap.db
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    command: ["node", "src/index.js", "/config.json"]
