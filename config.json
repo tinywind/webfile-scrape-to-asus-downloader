@@ -1,0 +1,22 @@
+{
+  "webpageUrls": [
+    {
+      "url": "YOUR_FIRST_WEBPAGE_URL",
+      "pattern": "YOUR_FIRST_FILE_PATTERN"
+    },
+    {
+      "url": "YOUR_SECOND_WEBPAGE_URL",
+      "pattern": "YOUR_SECOND_FILE_PATTERN"
+    }
+  ],
+  "asusDownloadMaster": {
+    "url": "http://router.asus.com:8081",
+    "user": "admin",
+    "pwd": "admin",
+    "requestTimeout": 30000,
+    "dmTimeout": 10000
+  },
+  "interval": 3600,
+  "runCount": 0,
+  "dbPath": "./scrap.db"
+}
